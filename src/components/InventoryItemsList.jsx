@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ItemsServices from '../services/ItemsServices';
 
 class InventoryItemsList extends Component {
     constructor(props){
@@ -8,6 +9,13 @@ class InventoryItemsList extends Component {
             items : []
         }
     }
+
+    componentDidMount(){
+        ItemsServices.getItems().then((res) => {
+            this.setState({ items : res.data});
+        });
+    }
+    
     render() {
         return (
             <div>
