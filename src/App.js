@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter as Router} from "react-router-dom";
 import {Routes, Route} from "react-router";
-import InventoryItemsList from './components/InventoryItemsList';
+import ListItemsComponent from './components/ListItemsComponent';
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent'
+import AddItemComponent from './components/AddItemComponent';
 
 function App() {
   return (
@@ -13,8 +13,9 @@ function App() {
       <HeaderComponent />
       <div className="container">
       <Routes>
-        <Route path='/' element={<InventoryItemsList />} />
-        <Route path='/all-inventory-items' element={<InventoryItemsList />} />
+        <Route path='/' exact element={<ListItemsComponent />} />
+        <Route path='/all-inventory-items' element={<ListItemsComponent />} />
+        <Route path='/add-inventory-items' element={<AddItemComponent />} />
       </Routes>
       </div>
       <FooterComponent />
