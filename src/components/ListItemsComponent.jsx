@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import ItemsServices from '../services/ItemsServices';
+import {useNavigate} from 'react-router-dom';
 
-class InventoryItemsList extends Component {
+class ListItemsComponent extends Component {
     constructor(props){
         super(props)
 
         this.state = {
             items : []
         }
+        this.addItem = this.addItem.bind(this);
     }
 
     componentDidMount(){
@@ -15,11 +17,16 @@ class InventoryItemsList extends Component {
             this.setState({ items : res.data});
         });
     }
+
+    addItem(){
+        this.props.navigate('/add-inventory-items');
+    }
     
     render() {
         return (
             <div>
                 <h2 className="text-center">Inventory Items</h2>
+                    <button className='btn btn-outline-primary' onClick={this.addItem}>Add Item</button>
                 <div className='row'>
 
                     <table className='table table-hover table-bordered'>
@@ -56,4 +63,10 @@ class InventoryItemsList extends Component {
     }
 }
 
-export default InventoryItemsList;
+function WithNavigate(props){
+    const navigate = useNavigate();
+    return <ListItemsComponent {...props} navigate={navigate}/>
+}
+
+
+export default WithNavigate;

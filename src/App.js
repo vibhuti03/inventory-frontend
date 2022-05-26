@@ -1,18 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
-import InventoryItemsList from './components/InventoryItemsList';
+import {BrowserRouter as Router} from "react-router-dom";
+import {Routes, Route} from "react-router";
+import ListItemsComponent from './components/ListItemsComponent';
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent'
+import AddItemComponent from './components/AddItemComponent';
 
 function App() {
   return (
+    <Router>
     <div>
       <HeaderComponent />
       <div className="container">
-        <InventoryItemsList />
+      <Routes>
+        <Route path='/' exact element={<ListItemsComponent />} />
+        <Route path='/all-inventory-items' element={<ListItemsComponent />} />
+        <Route path='/add-inventory-items' element={<AddItemComponent />} />
+      </Routes>
       </div>
       <FooterComponent />
     </div>
+    </Router>
   );
 }
 
