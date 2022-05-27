@@ -10,6 +10,7 @@ class ListItemsComponent extends Component {
             items : []
         }
         this.addItem = this.addItem.bind(this);
+        this.updateItem = this.updateItem.bind(this);
     }
 
     componentDidMount(){
@@ -21,12 +22,21 @@ class ListItemsComponent extends Component {
     addItem(){
         this.props.navigate('/add-inventory-items');
     }
+
+    updateItem(id){
+        if(id===1){
+           id = prompt("Please enter product id");
+        }
+        this.props.navigate(`/update-item/${id}`);
+
+    }
     
     render() {
         return (
             <div>
                 <h2 className="text-center">Inventory Items</h2>
                     <button className='btn btn-outline-primary' onClick={this.addItem}>Add Item</button>
+                    <button className='btn btn-outline-primary' onClick={ () => this.updateItem(1)}>Update Item</button>
                 <div className='row'>
 
                     <table className='table table-hover table-bordered'>
@@ -50,7 +60,9 @@ class ListItemsComponent extends Component {
                                     <td>{item.productQuantity}</td>
                                     <td>{item.costPrice}</td>
                                     <td>{item.sellPrice}</td>
-                                    <td></td>
+                                    <td>
+                                        <button onClick={ () => this.updateItem(item.id)} className="btn btn-outline-info">Update</button>
+                                    </td>
                                 </tr>
                             )
                         }
